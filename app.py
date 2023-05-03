@@ -17,8 +17,8 @@ from flask.json import jsonify
 from flask_httpauth import HTTPTokenAuth
 from werkzeug.datastructures import Headers
 
-
 application = app = Flask(__name__)
+
 
 if __name__ != "__main__":
     gunicorn_logger = logging.getLogger("gunicorn.error")
