@@ -138,7 +138,7 @@ class KoreMonitor(pyinotify.ProcessEvent):
             del entry["__CURSOR"]
         for key in ("MESSAGE_ID", "_BOOT_ID", "_MACHINE_ID"):
             entry[key] = entry[key].hex
-        for (k, v) in entry.items():
+        for k, v in entry.items():
             if isinstance(v, journal.Monotonic):
                 entry[k] = str(v.timestamp)
             elif isinstance(v, datetime):
