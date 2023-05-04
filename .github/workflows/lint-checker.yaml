@@ -1,4 +1,4 @@
-name: Lint
+name: Pylint
 
 on:
   # Trigger the workflow on push or pull request,
@@ -14,6 +14,7 @@ jobs:
   run-linters:
     name: Run linters
     runs-on: ubuntu-latest
+    permissions: write-all
 
     steps:
       - name: Check out Git repository
