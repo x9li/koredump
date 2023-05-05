@@ -1,9 +1,13 @@
-name: Deployment
-
-on: ['deployment']
+name: 'Deploy'     # Name of the action.
+on:
+  workflow_run:
+    workflows: ["Python package"]
+    types:
+      - completed
 
 jobs:
   deployment:
     runs-on: 'ubuntu-latest'
     steps:
-    - uses: actions/checkout@v1
+    - name: 'Checkout'  # Checkout the repository code.
+      uses: 'actions/checkout@v1'
