@@ -11,4 +11,3 @@ jobs:
     steps:
     - name: 'Checkout'  # Checkout the repository code.
       uses: 'actions/checkout@v1'
-
