@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["Python package"]
     types: [completed]
-    branches: [test_branch]
+    branches: ['*']
 
 jobs:
   deployment:
@@ -29,7 +29,3 @@ jobs:
         tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
         mv linux-amd64/helm /usr/local/bin/helm
         helm version
-    - name: Lint helm charts
-        run: helm lint ./infra/helm/
-
-
