@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: ["Python package"]
     types: [completed]
-    branches: [test_branch]
+    branches: ['*']
 
 jobs:
   deployment:
@@ -18,6 +18,12 @@ jobs:
         images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
         labels: |
           org.opencontainers.image.vendor=Nokia
+ #   - name: Build variables
+ #     id: vars
+ #     run: |
+ #       echo "::set-output name=repo::$GITHUB_REPOSITORY"
+ #       echo "::set-output name=tag::$(git rev-parse --short "$GITHUB_SHA")"
+
     - name: Create kube config
       run: |
         mkdir -p $HOME/.kube/
@@ -29,7 +35,14 @@ jobs:
         tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
         mv linux-amd64/helm /usr/local/bin/helm
         helm version
+
     - name: Lint helm charts
-        run: helm lint ./infra/helm/
+      run: helm lint ${{ github.workspace }}/charts/koredump/
+    - name: Deploy
+      run: |
+        helm repo add koredump https://github.com/x9li/koredump/
+        helm repo update
+        kubectl create namespace koredump	
+        helm install -n koredump koredump koredump/koredump
 
 
