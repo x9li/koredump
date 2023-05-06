@@ -42,12 +42,12 @@ jobs:
       run: |
         helm repo add koredump https://nokia.github.io/koredump/
         helm repo update
-#        helm install -n koredump koredump koredump/koredump
-
+#       helm install -n koredump koredump koredump/koredump
     - uses: actions-hub/kubectl@master
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
         args: get pods
+
 
 
