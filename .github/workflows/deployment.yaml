@@ -36,7 +36,7 @@ jobs:
         mv linux-amd64/helm /usr/local/bin/helm
         helm version
     - name: Lint helm charts
-      run: helm lint ./infra/helm/
+      run: helm lint ${{ github.workspace }}/charts/koredump
     - name: Deploy
       run: |
         helm upgrade --install --atomic --timeout 1m rest ./infra/helm/ -f ./infra/helm/values.yaml \
