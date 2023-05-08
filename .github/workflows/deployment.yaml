@@ -35,7 +35,6 @@ jobs:
         tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
         mv linux-amd64/helm /usr/local/bin/helm
         helm version
-
     - name: Lint helm charts
       run: helm lint ${{ github.workspace }}/charts/koredump/
     - name: Deploy
@@ -43,5 +42,3 @@ jobs:
         helm repo add koredump https://nokia.github.io/koredump/
         helm repo update
         helm install -n koredump koredump koredump/koredump
-
-
