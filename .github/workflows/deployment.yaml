@@ -44,5 +44,3 @@ jobs:
         helm repo update
         kubectl create namespace koredump	
         helm install -n koredump koredump koredump/koredump
-
-
