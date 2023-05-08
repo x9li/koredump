@@ -35,11 +35,11 @@ jobs:
         tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
         mv linux-amd64/helm /usr/local/bin/helm
         helm version
-
     - name: Lint helm charts
       run: helm lint ${{ github.workspace }}/charts/koredump/
     - name: Deploy
       run: |
-        helm upgrade --install --atomic --timeout 1m rest ${{ github.workspace }}/charts/koredump/ -f ${{ github.workspace }}/charts/koredump/values.yaml \
-          --kube-context nonprod --namespace koredump --create-namespace \
-          --set image.tag=${{ steps.meta.outputs.tags }}
+        helm repo add koredump https://github.com/x9li/koredump/
+        helm repo update
+        kubectl create namespace koredump	
+        helm install -n koredump koredump koredump/koredump
