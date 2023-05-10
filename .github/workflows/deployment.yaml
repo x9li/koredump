@@ -51,3 +51,4 @@ jobs:
         KUBE_PASSWORD: ${{ secrets.KUBE_PASSWORD }}
       with:
         args: get pods
+
