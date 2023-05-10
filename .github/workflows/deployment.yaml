@@ -40,5 +40,4 @@ jobs:
       run: helm lint ${{ github.workspace }}/charts/koredump/
     - name: Deploy
       run: |
-        kubectl get pods
-
+        docker ps | grep kube-apiserver
